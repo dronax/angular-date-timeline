@@ -143,11 +143,11 @@ TimelineModule.forRoot({
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md)
+Contributions are welcome!
 
 ## 📄 License
 
-MIT License - see [LICENSE.md](LICENSE.md)
+MIT License - see [LICENSE](LICENSE)
 
 ## 🐛 Issues
 
