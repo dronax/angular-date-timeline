@@ -1,6 +1,6 @@
 {
   "name": "angular-timeline",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -38,5 +38,6 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "ng-packagr": "^18.2.0",
     "typescript": "~5.5.2"
-  }
+  },
+  "sideEffects": false
 }
