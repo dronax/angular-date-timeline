@@ -1,7 +1,7 @@
 {
   "name": "angular-date-timeline",
-  "version": "0.1.0",
-    "description": "Angular Calendar Timline Library.",
+  "version": "0.1.1",
+  "description": "Angular Calendar Timline Library.",
   "peerDependencies": {
     "@angular/common": "^18.2.0",
     "@angular/core": "^18.2.0"
@@ -10,12 +10,12 @@
     "tslib": "^2.3.0"
   },
   "sideEffects": false,
-    "license": "MIT",
-   "repository": {
+  "license": "MIT",
+  "repository": {
     "type": "git",
     "url": "git+https://github.com/dronax/angular-date-timeline.git"
   },
-   "bugs": {
+  "bugs": {
     "url": "https://github.com/dronax/ngx-timeline-calendar/issues"
   }
 }
