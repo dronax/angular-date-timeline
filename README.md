@@ -147,7 +147,7 @@ Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## 📄 License
 
-MIT License - see [LICENSE.md](LICENSE.md)
+MIT License - see [LICENSE](LICENSE)
 
 ## 🐛 Issues
 
