@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-interface CalendarEvent {
+export interface CalendarEvent {
   id?: number;
   title: string;
   start: Date;
