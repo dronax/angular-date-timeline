@@ -151,7 +151,7 @@ MIT License - see [LICENSE](LICENSE)
 
 ## 🐛 Issues
 
-Found a bug? Please file an issue on our [GitHub Issues](https://github.com/dronax/ngx-timeline-calendar/issues)
+Found a bug? Please file an issue on our [GitHub Issues](https://github.com/dronax/angular-date-timeline/issues)
 
 ## 💡 Changelog
 
