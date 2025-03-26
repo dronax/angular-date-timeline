@@ -1,0 +1,57 @@
+<div class="calendar-container">
+  <div class="calendar-header">
+    <h3 class="current-date">{{ currentDate | date:'MMMM yyyy' }}</h3>
+    <div>
+    <button (click)="goToPreviousMonth()" class="month-btn">&lt;</button>
+    <span class="today-button" (click)="selectDay()">Today</span>
+    <button (click)="goToNextMonth()" class="month-btn">&gt;</button>
+    </div>
+  </div>
+  <div class="calendar-grid">
+    <div class="weekdays">
+      <div>Sun</div>
+      <div>Mon</div>
+      <div>Tue</div>
+      <div>Wed</div>
+      <div>Thu</div>
+      <div>Fri</div>
+      <div>Sat</div>
+    </div>
+    <div class="days-grid">
+      <div *ngFor="let week of monthGrid" class="week">
+        <div
+          *ngFor="let day of week"
+          class="day"
+          [class.other-month]="day.date.getMonth() !== currentDate.getMonth()"
+           (click)="selectDay(day.date)"
+        >
+          <div class="day-number" role="button"
+            [class.active-day]="day.date.getFullYear()==selectedDay.getFullYear() &&
+          day.date.getMonth()==selectedDay.getMonth() && day.date.getDate()==selectedDay.getDate()
+            ">{{ day.date | date:'d' }}</div>
+          <div class="events-wrapper" role="button">
+            <ng-container *ngFor="let event of day.events.slice(0,3); let i = index; let last = last">
+              <div
+                class="event-container"
+                [class.event-first-day]="event.displayTitle !== ''"
+                [class.event-last-day]="isLastDayOfEvent(day.date, event)"
+                [class.event-middle-day]="isMiddleDayOfEvent(day.date, event)"
+                [style.backgroundColor]="event.color?event.color:'gray'"
+                [title]="event.title"
+              >
+                <div class="event" role="button" [style.color]="'white'" >
+                  {{ event.displayTitle }}
+                </div>
+              </div>
+            </ng-container>
+            <div *ngIf="day.events.length>3" role="Button" class="event-container showmore">
+              <div class="event" (click)="viewMore(day.events)">
+                Show More
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
