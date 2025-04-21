@@ -1,0 +1,66 @@
+.modal-container{
+  border: 2px solid #f4f4f4;        /* Blue border */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Soft shadow */
+  border-radius: 8px;               /* Optional rounded corners */
+  background-color: white;
+  min-width:300px;
+  position:absolute;
+  z-index:99;
+}
+.modal-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+  font-weight: bold;
+}
+.current-year{
+  color:#54A6FE;
+  margin: 10px 2px 2px 20px;
+  cursor:pointer;
+  font-size:14px;
+  font-weight:550
+
+}
+.month-grid{
+  padding:1em;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1em;
+}
+.month-name{
+  border:none;
+  color:#000000;
+  background:#ffff;
+  padding:0.5em;
+  font-size:14px;
+  font-weight:550
+}
+.month-name.is-active{
+  background:#54A6FE;
+  border-radius:4px;
+  color:#fff;
+}
+.month-name:hover{
+  background:#ECECED;
+  border-radius:4px;
+}
+
+.arrow-up {
+  position:relative;
+  top:-12px;
+  left:22px;
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 12px solid #fff;
+  margin-left: 20px; /* adjust based on where the arrow should point */
+}
+.nav .current-year{
+  background:#fff;
+  border:none;
+  color:#54A6FE;
+  font-size:16px;
+  font-weight:800
+}

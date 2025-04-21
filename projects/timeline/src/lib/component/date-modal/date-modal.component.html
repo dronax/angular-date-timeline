@@ -1,0 +1,40 @@
+@if(isMonthView){
+<div class="modal-container"
+    [ngStyle]="{ top: position.top + 'px', left: position.left + 'px' }"
+  >
+  <div class="arrow-up"></div>
+  <div class="modal-header">
+    <h5 class="current-year" (click)="toggleCalendarView()">{{currentYear()}}</h5>
+    <div class="nav">
+      <button class="current-year" (click)="decreaseYear()">&lt;</button>
+      <button class="current-year" (click)="increaseYear()">&gt;</button>
+    </div>
+  </div>
+  <div class="month-grid">
+    @for(month of months;track $index){
+      <button class="month-name" (click)="changeMonth($index)" [ngClass]="{'is-active':$index==currentMonth}">{{month}}</button>
+    }
+  </div>
+</div>
+}
+@else{
+<div class="modal-container"
+        [ngStyle]="{ top: position.top + 'px', left: position.left + 'px' }"
+  >
+  <div class="arrow-up"></div>
+  <div class="modal-header">
+    <h5 class="current-year" (click)="toggleCalendarView()">{{(currentYear()|yearRanges)+" - " +((currentYear()|yearRanges)+11)}}</h5>
+    <div class="nav">
+      <button class="current-year" (click)="decreaseYearIndex()">&lt;</button>
+      <button class="current-year" (click)="increaseYearIndex()">&gt;</button>
+    </div>
+  </div>
+  <div class="month-grid">
+      @for(year of [].constructor(12);track $index){
+        <button class="month-name" (click)="selectYear(currentYear(),$index)" [ngClass]="{'is-active':(currentYear()|yearRanges)+$index==currentYear()}" >
+          {{(currentYear()|yearRanges)+$index}}
+        </button>
+      }
+  </div>
+</div>
+}

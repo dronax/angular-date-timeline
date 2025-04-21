@@ -1,10 +1,18 @@
 <div class="calendar-container">
   <div class="calendar-header">
-    <h3 class="current-date">{{ currentDate | date:'MMMM yyyy' }}</h3>
     <div>
-    <button (click)="goToPreviousMonth()" class="month-btn">&lt;</button>
-    <span class="today-button" (click)="selectDay()">Today</span>
-    <button (click)="goToNextMonth()" class="month-btn">&gt;</button>
+      <button (click)="onMothClick($event)" class="month-box">
+        <h3  class="current-date" >{{ currentDate | date:'MMMM yyyy' }}</h3>
+      </button>
+      @if(showDateModal){
+        <lib-date-modal [position]="position" [currentDate]="currentDate" (onNewDateSelection)="onDateChange($event)"></lib-date-modal>
+      }
+    </div>
+
+    <div>
+      <button (click)="goToPreviousMonth()" class="month-btn">&lt;</button>
+      <span class="today-button" (click)="selectDay()">Today</span>
+      <button (click)="goToNextMonth()" class="month-btn">&gt;</button>
     </div>
   </div>
   <div class="calendar-grid">
@@ -23,13 +31,13 @@
           *ngFor="let day of week"
           class="day"
           [class.other-month]="day.date.getMonth() !== currentDate.getMonth()"
-           (click)="selectDay(day.date)"
+          (click)="selectDay(day.date)"
         >
           <div class="day-number" role="button"
             [class.active-day]="day.date.getFullYear()==selectedDay.getFullYear() &&
-          day.date.getMonth()==selectedDay.getMonth() && day.date.getDate()==selectedDay.getDate()
+            day.date.getMonth()==selectedDay.getMonth() && day.date.getDate()==selectedDay.getDate()
             ">{{ day.date | date:'d' }}</div>
-          <div class="events-wrapper" role="button">
+          <div class="events-wrapper" role="button" (click)="viewMore(day.events)">
             <ng-container *ngFor="let event of day.events.slice(0,3); let i = index; let last = last">
               <div
                 class="event-container"
@@ -39,7 +47,9 @@
                 [style.backgroundColor]="event.color?event.color:'gray'"
                 [title]="event.title"
               >
-                <div class="event" role="button" [style.color]="'white'" >
+                <div class="event" role="button"
+                  [style.color]="'white'"
+                >
                   {{ event.displayTitle }}
                 </div>
               </div>

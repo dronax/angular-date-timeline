@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { DateModalComponent } from './component/date-modal/date-modal.component';
 interface CalendarEvent {
   id?: number;
   title: string;
@@ -14,17 +15,24 @@ interface CalendarEvent {
 @Component({
   selector: 'lib-timeline',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, DateModalComponent],
   templateUrl: './timeline.component.html',
   styleUrl: './timeline.component.css',
 })
 export class TimelineComponent implements OnInit {
-  @Input() events!: CalendarEvent[]
+  public events!: CalendarEvent[]
   @Output() showMore = new EventEmitter<any>()
+  @Output() dateChangeEvent = new EventEmitter<any>()
   monthGrid: { date: Date; events: CalendarEvent[] }[][] = [];
   public selectedDay = new Date()
+  public showDateModal: boolean = false
   currentDate: Date = new Date();
+  position = { top: 0, left: 0 };
   ngOnInit(): void {
+    this.generateMonthGrid()
+  }
+  @Input() set _events(data: any) {
+    this.events = data
     this.generateMonthGrid()
   }
 
@@ -66,11 +74,13 @@ export class TimelineComponent implements OnInit {
   goToNextMonth() {
     this.currentDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() + 1, 1);
     this.generateMonthGrid();
+    this.dateChangeEvent.emit(this.currentDate)
   }
 
   goToPreviousMonth() {
     this.currentDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() - 1, 1);
     this.generateMonthGrid();
+    this.dateChangeEvent.emit(this.currentDate)
   }
   getEventDisplayTitle(currentDate: Date, event: CalendarEvent): string {
     const eventStart = new Date(event.start);
@@ -82,7 +92,6 @@ export class TimelineComponent implements OnInit {
       return event.title;
     }
 
-    // For subsequent days, return a continuation marker or empty string
     return this.isDateInEventRange(currentDate, event) ? '' : '';
   }
   isSameDay(date1: Date, date2: Date): boolean {
@@ -112,15 +121,32 @@ export class TimelineComponent implements OnInit {
   }
   public viewEvent(): void {
   }
-  public selectDay(date?: any): void {
+  public selectDay(date?: Date): void {
     if (date) {
       this.selectedDay = date
     } else {
       this.selectedDay = new Date()
       this.currentDate = new Date();
-      this.generateMonthGrid();
+      this.dateChangeEvent.emit(this.currentDate)
     }
 
+  }
+  public onMothClick(btn: Event): void {
+    let target = btn.target as HTMLElement
+    let rect = target.getBoundingClientRect()
+    this.position = {
+      top: rect.bottom + window.scrollY + 10, // +10 for the arrow
+      left: rect.left + window.scrollX - 40   // adjust to align arrow with button
+    };
+    this.showDateModal = !this.showDateModal
+  }
+  public onDateChange($event: any): void {
+    this.showDateModal = false
+    if (typeof ($event) == 'object') {
+      this.currentDate = $event
+      this.generateMonthGrid()
+      this.dateChangeEvent.emit(this.currentDate)
+    }
   }
 
 }

@@ -1,7 +1,7 @@
 .calendar-container {
   font-family: Arial, sans-serif;
   margin: 0 auto;
-  border: 1px solid #e0e0e0;
+  border-radius:18px;
 }
 
 .calendar-header {
@@ -51,7 +51,7 @@
 }
 
 .day {
-    cursor:pointer;
+  cursor:pointer;
   border: 1px solid #e0e0e0;
   padding: 5px;
   position: relative;
@@ -96,7 +96,7 @@
 
 .event-container {
   position: relative;
-    margin-top:6px;
+  margin-top:6px;
   cursor:pointer;
   width: 100%;
   padding:1px;
@@ -147,8 +147,9 @@
 /* Responsive Adjustments */
 @media screen and (max-width: 1024px) {
   .calendar-header {
-    flex-direction: column;
-    gap: 10px;
+    /* flex-direction: column; */
+    /* align-items:start; */
+    /* gap: 10px; */
   }
 
   .day {
@@ -206,4 +207,49 @@
   .event {
     font-size: 0.4em;
   }
+}
+.month-box{
+  position:relative;
+}
+.modal-container{
+  background:#dce8e5;
+  position:absolute;
+  z-index:9;
+  top:60px;
+  left:12px;
+  border-radius:22px;
+}
+.modal-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+  font-weight: bold;
+}
+.current-year{
+  color:blue;
+  margin: 10px 2px 2px 20px;
+  cursor:pointer;
+}
+.month-grid{
+  padding:1em;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1em;
+}
+.month-name{
+  border:none;
+  padding:0.5em;
+}
+
+.arrow-up {
+  position:relative;
+  top:-12px;
+  left:22px;
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 12px solid #dce8e5;
+  margin-left: 20px; /* adjust based on where the arrow should point */
 }
