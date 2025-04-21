@@ -1,6 +1,6 @@
 {
   "name": "angular-date-timeline",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "description": "Angular Calendar Timline Library.",
   "peerDependencies": {
     "@angular/common": "^18.0.3",
